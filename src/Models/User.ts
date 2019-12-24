@@ -1,5 +1,6 @@
 import { Eventing } from "./Core/Events/Eventing";
-import {AxiosRepositoryConnector } from "./AxiosRepositoryConnector";
+import { AxiosRepositoryConnector } from "./AxiosRepositoryConnector";
+import { Attributes } from "./Core/Attributes";
 
 export interface UserDefinition {
   id?: number;
@@ -10,16 +11,13 @@ export interface UserDefinition {
 const rootUrl = "http://localhost:3000/users";
 
 export class User {
-  public events: Eventing = new Eventing();
-  public connector: AxiosRepositoryConnector<UserDefinition> = new AxiosRepositoryConnector<UserDefinition>(rootUrl);
+  public events: Eventing;
+  public connector: AxiosRepositoryConnector<UserDefinition>;
+  public attributes: Attributes<UserDefinition>;
 
-  constructor(private data: UserDefinition) {}
-
-  public get(property: string): string | number {
-    return this.data[property];
-  }
-
-  public set(update: UserDefinition): void {
-    Object.assign(this.data, update);
+  constructor(data: UserDefinition) {
+    this.attributes = new Attributes<UserDefinition>(data);
+    this.connector = new AxiosRepositoryConnector<UserDefinition>(rootUrl);
+    this.events = new Eventing();
   }
 }

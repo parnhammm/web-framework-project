@@ -2,7 +2,7 @@ import axios, { AxiosPromise, AxiosResponse } from "axios";
 import { IRepositoryConnector } from "./Core/Repository/IRepositoryConnector";
 
 export interface Identifiable {
-  id: number;
+  id?: number;
 }
 
 export class AxiosRepositoryConnector<T extends Identifiable>
