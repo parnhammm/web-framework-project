@@ -1,8 +1,6 @@
-import { User } from "./Models/User";
+import axios from "axios";
 
-const user = new User({ name: "Andrew", age: 26 });
-
-user.set({ name: "Trevor", age: 999 });
-
-console.log("Name: " + user.get("name"));
-console.log("Age: " + user.get("age"));
+axios.post("http://localhost:3000/users", {
+  name: "Andrew",
+  age: 20
+});
