@@ -11,13 +11,15 @@ export interface UserDefinition {
 const rootUrl = "http://localhost:3000/users";
 
 export class User {
-  public events: Eventing;
-  public connector: AxiosRepositoryConnector<UserDefinition>;
-  public attributes: Attributes<UserDefinition>;
+  private events: Eventing;
+  private connector: AxiosRepositoryConnector<UserDefinition>;
+  private attributes: Attributes<UserDefinition>;
 
   constructor(data: UserDefinition) {
     this.attributes = new Attributes<UserDefinition>(data);
     this.connector = new AxiosRepositoryConnector<UserDefinition>(rootUrl);
     this.events = new Eventing();
   }
+
+  
 }
