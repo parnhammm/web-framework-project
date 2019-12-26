@@ -3,6 +3,7 @@ import { IIdentifiable } from "./Core/Repository/IIdentifiable";
 import { ModelAttributes } from "./Core/Models/Attributes/ModelAttributes";
 import { AxiosRepositoryConnector } from "./AxiosRepositoryConnector";
 import { Eventing } from "./Core/Events/Eventing";
+import { Collection } from "./Core/Models/Collection";
 
 export interface UserDefinition extends IIdentifiable {
   name?: string;
@@ -17,6 +18,15 @@ export class User extends Model<UserDefinition> {
       new ModelAttributes(attributes),
       new Eventing(),
       new AxiosRepositoryConnector<UserDefinition>(rootUrl)
+    );
+  }
+
+  static buildUserCollection(): Collection<User, UserDefinition> {
+    return new Collection<User, UserDefinition>(
+      rootUrl,
+      (json: UserDefinition) => {
+        return User.buildUser(json);
+      }
     );
   }
 }
