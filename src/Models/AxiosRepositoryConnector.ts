@@ -1,12 +1,9 @@
 import axios, { AxiosPromise, AxiosResponse } from "axios";
-import { IRepositoryConnector } from "./Core/Repository/IRepositoryConnector";
+import { IRepositoryConnector } from "../Core/Repository/IRepositoryConnector";
+import {IIdentifiable} from "../Core/Repository/IIdentifiable";
 
-export interface Identifiable {
-  id?: number;
-}
-
-export class AxiosRepositoryConnector<T extends Identifiable>
-  implements IRepositoryConnector<T, AxiosResponse, AxiosPromise> {
+export class AxiosRepositoryConnector<T extends IIdentifiable>
+  implements IRepositoryConnector<T> {
   
   constructor(public rootUrl: string) { }
 

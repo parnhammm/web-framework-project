@@ -1,6 +1,7 @@
-type EventCallback = () => void;
+import { EventCallback } from "./TEventCallback";
+import { IEventing } from "./IEventing";
 
-export class Eventing {
+export class Eventing implements IEventing {
   private events: { [eventName: string]: EventCallback[] } = {};
 
   public on = (eventName: string, callback: EventCallback): void => {
@@ -8,7 +9,7 @@ export class Eventing {
     handlers.push(callback);
 
     this.events[eventName] = handlers;
-  }
+  };
 
   public trigger = (eventName: string): void => {
     const handlers = this.events[eventName];
@@ -20,5 +21,5 @@ export class Eventing {
     handlers.forEach(callback => {
       callback();
     });
-  }
+  };
 }

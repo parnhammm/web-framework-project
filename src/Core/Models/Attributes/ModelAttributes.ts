@@ -1,4 +1,6 @@
-export class Attributes<T> {
+import { IModelAttributes } from "./IModelAttributes";
+
+export class ModelAttributes<T> implements IModelAttributes<T> {
   constructor(private data: T) {}
 
   // This syntax is a bit narly... lets break it down:
