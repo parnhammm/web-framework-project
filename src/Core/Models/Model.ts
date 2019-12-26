@@ -11,17 +11,25 @@ export abstract class Model<T extends IIdentifiable> {
     private repository: IRepositoryConnector<T>
   ) {}
 
-  get on() {
-    return this.events.on;
-  }
+  /*
+    Note: we can only do this when we are using the ES2015 syntax for assigning
+    values in the constructor as arguments. If we used a property on the class, and use this.property = property
+    syntax, the outputed javascript would **not** work. 
 
-  get trigger() {
-    return this.events.trigger;
-  }
+    The outputted js would be something like:
 
-  get get() {
-    return this.attributes.get;
-  }
+    var Model = (function() {
+      var Model() {
+        this.on = this.events.on;
+        this.events = events;
+      }
+    })
+
+    which would reference an undefined property!
+  */
+  on = this.events.on;
+  trigger = this.events.trigger;
+  get = this.attributes.get;
 
   set(update: T): void {
     this.attributes.set(update);
