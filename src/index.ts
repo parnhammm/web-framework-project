@@ -1,3 +1,3 @@
-import { User } from "./Models/User";
+import { User } from "./User";
 
 const user = User.buildUser({});
