@@ -12,7 +12,7 @@ export abstract class Model<T extends IIdentifiable> {
   ) {}
 
   /*
-    Note: we can only do this when we are using the ES2015 syntax for assigning
+    Note: we can only do this shortened syntax when we are using the ES2015 syntax for assigning
     values in the constructor as arguments. If we used a property on the class, and use this.property = property
     syntax, the outputed javascript would **not** work. 
 
