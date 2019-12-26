@@ -21,5 +21,15 @@ export class User {
     this.events = new Eventing();
   }
 
-  
+  get on() {
+    return this.events.on;
+  }
+
+  get trigger() {
+    return this.events.trigger;
+  }
+
+  get get() {
+    return this.attributes.get;
+  }
 }
