@@ -1,6 +1,7 @@
 import { Eventing } from "./Core/Events/Eventing";
 import { AxiosRepositoryConnector } from "./AxiosRepositoryConnector";
 import { Attributes } from "./Core/Attributes";
+import { AxiosResponse } from "axios";
 
 export interface UserDefinition {
   id?: number;
@@ -31,5 +32,33 @@ export class User {
 
   get get() {
     return this.attributes.get;
+  }
+
+  set(update: UserDefinition): void {
+    this.attributes.set(update);
+
+    this.events.trigger("change");
+  }
+
+  fetch(): void {
+    const id = this.get("id");
+    if (typeof id !== "number") {
+      throw new Error("Cannot fetch without an id");
+    }
+
+    this.connector.fetch(id).then((response: AxiosResponse): void => {
+      this.set(response.data);
+    });
+  }
+
+  save(): void {
+    this.connector
+      .save(this.attributes.all())
+      .then((response: AxiosResponse): void => {
+        this.trigger("saveCompleted");
+      })
+      .catch(() => {
+        this.trigger("saveFailed");
+      });
   }
 }

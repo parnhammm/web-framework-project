@@ -15,4 +15,8 @@ export class Attributes<T> {
   public set(update: T): void {
     Object.assign(this.data, update);
   }
+
+  public all(): T {
+    return this.data;
+  }
 }
