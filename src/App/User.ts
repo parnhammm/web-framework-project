@@ -1,9 +1,9 @@
-import { Model } from "./Core/Models/Model";
-import { IIdentifiable } from "./Core/Repository/IIdentifiable";
-import { ModelAttributes } from "./Core/Models/Attributes/ModelAttributes";
+import { Model } from "../Core/Models/Model";
+import { IIdentifiable } from "../Core/Repository/IIdentifiable";
+import { ModelAttributes } from "../Core/Models/Attributes/ModelAttributes";
 import { AxiosRepositoryConnector } from "./AxiosRepositoryConnector";
-import { Eventing } from "./Core/Events/Eventing";
-import { Collection } from "./Core/Models/Collection";
+import { Eventing } from "../Core/Events/Eventing";
+import { Collection } from "../Core/Models/Collection";
 
 export interface UserDefinition extends IIdentifiable {
   name?: string;

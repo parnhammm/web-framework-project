@@ -1,6 +1,6 @@
 import axios, { AxiosPromise, AxiosResponse } from "axios";
-import { IRepositoryConnector } from "./Core/Repository/IRepositoryConnector";
-import {IIdentifiable} from "./Core/Repository/IIdentifiable";
+import { IRepositoryConnector } from "../Core/Repository/IRepositoryConnector";
+import {IIdentifiable} from "../Core/Repository/IIdentifiable";
 
 export class AxiosRepositoryConnector<T extends IIdentifiable>
   implements IRepositoryConnector<T> {
