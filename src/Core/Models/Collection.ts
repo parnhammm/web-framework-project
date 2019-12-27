@@ -1,8 +1,7 @@
 import { Eventing } from "../Events/Eventing";
 import Axios, { AxiosResponse } from "axios";
-import { Model } from "./Model";
 
-export class Collection<T extends Model<D>, D> {
+export class Collection<T, D> {
   models: T[] = [];
   events: Eventing = new Eventing();
 
