@@ -1,7 +1,12 @@
 import { UserForm } from "./App/UI/UserForm";
-import {User } from './App/User';
+import { User } from "./App/User";
 
-const user = User.buildUser({name: "Andrew", age: 26});
+const user = User.buildUser({ name: "Andrew", age: 26 });
+const root = document.getElementById("root");
 
-const userForm = new UserForm(document.getElementById("root"), user);
-userForm.render();
+if (root) {
+  const userForm = new UserForm(root, user);
+  userForm.render();
+} else {
+  throw new Error("Root element not found");
+}
